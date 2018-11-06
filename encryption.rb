@@ -16,19 +16,14 @@ string = STDIN.gets.chomp
 
 puts 'Каким способом зашифровать:?'
 
-methods.each_with_index do |item, index|
-  puts "#{index + 1}. #{item}"
-end
+methods.each_with_index { |item, index|  puts "#{index + 1}. #{item}"}
 
 input = STDIN.gets.to_i
 
 result = case input
-         when 1
-           Digest::MD5.hexdigest(string)
-         when 2
-           Digest::SHA1.hexdigest(string)
-         when 3
-           Digest::SHA2.hexdigest(string)
+         when 1 then Digest::MD5.hexdigest(string)
+         when 2 then Digest::SHA1.hexdigest(string)
+         when 3 then Digest::SHA2.hexdigest(string)
          end
 
 puts 'Вот что получилось:'
