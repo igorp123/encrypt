@@ -16,6 +16,7 @@ puts 'Каким способом зашифровать:?'
 
 puts '1. MD5'
 puts '2. SHA1'
+puts '3. SHA2'
 
 encription_type = STDIN.gets.to_i
 
@@ -23,6 +24,8 @@ if encription_type == 1
   result = Digest::MD5.hexdigest(string)
 elsif encription_type == 2
   result = Digest::SHA1.hexdigest(string)
+elsif encription_type == 3
+  result = Digest::SHA2.hexdigest(string)
 end
 
 puts 'Вот что получилось:'
