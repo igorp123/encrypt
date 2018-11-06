@@ -9,24 +9,27 @@ end
 
 require 'digest'
 
+methods = %w(MD5 SHA1 SHA2)
+
 puts 'Введите слово или фразу для шифрования:'
 string = STDIN.gets.chomp
 
 puts 'Каким способом зашифровать:?'
 
-puts '1. MD5'
-puts '2. SHA1'
-puts '3. SHA2'
-
-encription_type = STDIN.gets.to_i
-
-if encription_type == 1
-  result = Digest::MD5.hexdigest(string)
-elsif encription_type == 2
-  result = Digest::SHA1.hexdigest(string)
-elsif encription_type == 3
-  result = Digest::SHA2.hexdigest(string)
+methods.each_with_index do |item, index|
+  puts "#{index + 1}. #{item}"
 end
+
+input = STDIN.gets.to_i
+
+result = case input
+         when 1
+           Digest::MD5.hexdigest(string)
+         when 2
+           Digest::SHA1.hexdigest(string)
+         when 3
+           Digest::SHA2.hexdigest(string)
+         end
 
 puts 'Вот что получилось:'
 puts result
